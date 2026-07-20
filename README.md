@@ -143,14 +143,20 @@ Explore the full architectural specifications in the `docs/` folder:
 2. ☕ [BACKEND.md](docs/BACKEND.md) - Spring Boot layer architecture, base classes, caching & logging.
 3. ⚛️ [FRONTEND.md](docs/FRONTEND.md) - React design system, permissions, Axios interceptors & state.
 4. 📱 [MOBILE.md](docs/MOBILE.md) - React Native offline queue, SQLite sync, biometrics & camera.
-5. 🗄️ [DATABASE.md](docs/DATABASE.md) - PostgreSQL standards, UUID primary keys, soft delete & Flyway.
-6. 🔒 [SECURITY.md](docs/SECURITY.md) - Spring Security, JWT rotation, Redis blacklist, dynamic RBAC.
-7. 🐳 [DEPLOYMENT.md](docs/DEPLOYMENT.md) - Docker Compose, Nginx, SSL certificates, health monitoring.
-8. 🌐 [API-STANDARDS.md](docs/API-STANDARDS.md) - REST guidelines, `ApiResponse<T>`, pagination & versioning.
-9. 🤝 [CONTRIBUTING.md](docs/CONTRIBUTING.md) - Git Flow, Conventional Commits & Pull Request rules.
-10. 🧪 [TESTING.md](docs/TESTING.md) - JUnit 5, Mockito, Integration & Web/Mobile UI tests.
-11. 📝 [CHANGELOG.md](docs/CHANGELOG.md) - Version history & semantic release tracking.
-12. 📏 [CODING-STANDARDS.md](docs/CODING-STANDARDS.md) - Code style, formatting, Checkstyle & ESLint rules.
+5. 🤖 [AI.md](docs/AI.md) - Enterprise AI Platform, provider abstraction (OpenAI, Gemini, Claude, Ollama).
+6. 🔍 [RAG.md](docs/RAG.md) - Retrieval Augmented Generation, chunking, vector DB abstraction (PgVector, Qdrant).
+7. 🤖 [AGENTS.md](docs/AGENTS.md) - Goal-oriented autonomous AI agents and tool framework.
+8. 📝 [PROMPTS.md](docs/PROMPTS.md) - DB-driven prompt versioning and variable template engine.
+9. 🛡️ [SECURITY-AI.md](docs/SECURITY-AI.md) - Prompt injection protection, PII masking & AI cost audit.
+10. 📡 [API-AI.md](docs/API-AI.md) - REST API specification for `/api/v1/ai/*` endpoints.
+11. 🗄️ [DATABASE.md](docs/DATABASE.md) - PostgreSQL standards, UUID primary keys, soft delete & Flyway.
+12. 🔒 [SECURITY.md](docs/SECURITY.md) - Spring Security, JWT rotation, Redis blacklist, dynamic RBAC.
+13. 🐳 [DEPLOYMENT.md](docs/DEPLOYMENT.md) - Docker Compose, Nginx, SSL certificates, health monitoring.
+14. 🌐 [API-STANDARDS.md](docs/API-STANDARDS.md) - REST guidelines, `ApiResponse<T>`, pagination & versioning.
+15. 🤝 [CONTRIBUTING.md](docs/CONTRIBUTING.md) - Git Flow, Conventional Commits & Pull Request rules.
+16. 🧪 [TESTING.md](docs/TESTING.md) - JUnit 5, Mockito, Integration & Web/Mobile UI tests.
+17. 📝 [CHANGELOG.md](docs/CHANGELOG.md) - Version history & semantic release tracking.
+18. 📏 [CODING-STANDARDS.md](docs/CODING-STANDARDS.md) - Code style, formatting, Checkstyle & ESLint rules.
 
 ---
 

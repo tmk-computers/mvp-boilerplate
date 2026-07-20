@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Navbar } from './Navbar';
+import { AIChatWidget } from '@/components/common/AIChatWidget';
 
 export const AppLayout: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ export const AppLayout: React.FC = () => {
           <Outlet />
         </main>
       </div>
+      <AIChatWidget />
     </div>
   );
 };
