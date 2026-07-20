@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: dasp-backend
+  profiles:
+    active: dev
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+dasp:
+  security:
+    jwt:
+      secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      access-token-expiration-ms: 900000 # 15 minutes
+      refresh-token-expiration-ms: 604800000 # 7 days
+    cors:
+      allowed-origins: "http://localhost:5173,http://localhost:3000"
+      allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+      allowed-headers: "*"
+      allow-credentials: true
+  storage:
+    type: local # local, minio, s3
+    local:
+      base-path: ./uploads
+  notification:
+    mail:
+      from: noreply@daspdigital.com

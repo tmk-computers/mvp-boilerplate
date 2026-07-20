@@ -1,0 +1,17 @@
+# Maven & Java Build Output
+target/
+.mvn/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+# Local Uploads & Logs
+uploads/
+logs/
+*.log
+
+# Environment Config
+.env
+*.env.local

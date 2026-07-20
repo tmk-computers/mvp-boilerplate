@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dasp-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME:-dasp_db}
+      POSTGRES_USER: ${DB_USER:-dasp_user}
+      POSTGRES_PASSWORD: ${DB_PASS:-dasp_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-dasp_user} -d ${DB_NAME:-dasp_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: dasp-redis
+    restart: always
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: dasp-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@dasp.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASS:-admin123}
+    ports:
+      - "5050:80"
+
+  redis-insight:
+    image: redis/redisinsight:latest
+    container_name: dasp-redisinsight
+    restart: always
+    ports:
+      - "5540:5540"
+
+volumes:
+  postgres_data:
+  redis_data:

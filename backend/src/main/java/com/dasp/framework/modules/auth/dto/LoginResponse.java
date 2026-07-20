@@ -1,0 +1,25 @@
+package com.dasp.framework.modules.auth.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+import java.util.UUID;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class LoginResponse {
+
+    private UUID userId;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String accessToken;
+    private String refreshToken;
+    private String tokenType;
+    private List<String> permissions;
+}
