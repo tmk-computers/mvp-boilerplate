@@ -1,15 +1,28 @@
 # DASP Digital MVP Boilerplate Framework (`dasp-mvp-boilerplate`)
 
-> **Enterprise-Grade Reusable Application Framework for DASP Digital**  
-> Accelerate production-ready business application development (CRM, ERP, Billing, POS, HRMS, Logistics, Healthcare, School ERP, Warehousing, etc.) by cutting development effort by over **80%**.
+> **Enterprise-Grade Reusable Application Framework & AI Platform for DASP Digital**  
+> Accelerate production-ready business application development (CRM, ERP, Billing, POS, HRMS, Logistics, Healthcare, School ERP, Warehousing, etc.) with built-in Enterprise AI capability, cutting development effort by over **80%**.
 
 ---
 
 ## 🚀 Executive Summary
 
-`dasp-mvp-boilerplate` is an enterprise application framework pre-configured with multi-tenant dynamic RBAC, token management, generic CRUD base layers, unified logging, pluggable storage, strategy-pattern notifications, offline-first mobile sync, dynamic UI form engines, and a complete Dockerized microservice-ready environment.
+`dasp-mvp-boilerplate` is an enterprise application framework pre-configured with multi-tenant dynamic RBAC, token management, generic CRUD base layers, unified logging, pluggable storage, strategy-pattern notifications, offline-first mobile sync, dynamic UI form engines, a complete Dockerized microservice-ready environment, and an **Enterprise AI Framework Layer**.
 
-Instead of writing boilerplate security, JPA mapping, table pagination, authentication, file storage, or audit logging from scratch for every project, developers implement **only business modules**.
+Instead of writing boilerplate security, JPA mapping, table pagination, authentication, file storage, audit logging, or LLM integrations from scratch for every project, developers implement **only business modules**.
+
+---
+
+## 🤖 Enterprise AI Framework Layer
+
+The framework includes a vendor-agnostic **Enterprise AI Platform** (`com.dasp.framework.modules.ai`) that acts as an abstraction between business applications and external AI service providers:
+
+- **Zero Provider Coupling**: Business modules interact strictly via `AIProvider` and `VectorProvider` interfaces. Providers are dynamically configured without modifying application logic.
+- **Multi-LLM Provider Support**: Out-of-the-box support for OpenAI (`gpt-4o`), Google Gemini (`gemini-1.5-pro`), Anthropic Claude (`claude-3-5-sonnet`), Azure OpenAI, and Local Ollama (`llama3.2` zero-cost execution).
+- **Retrieval Augmented Generation (RAG)**: Integrated document chunking, embedding generation, and vector database abstraction supporting PgVector, Qdrant, Milvus, Pinecone, and Chroma.
+- **Database-Driven Prompt Engine**: Version-controlled prompts with runtime variable interpolation (`{{customerName}}`), validation, rollback, and Redis prompt caching.
+- **Autonomous AI Agent & Tool Framework**: Goal-oriented agent execution engine with reusable business tools (`DatabaseSearchTool`, `RestApiTool`, `EmailTool`, `CalculatorTool`).
+- **AI Security & Governance**: Built-in prompt injection defense, PII data masking (emails, phone numbers), AI content moderation, token rate limits, and real-time Redis cost tracking.
 
 ---
 
@@ -17,13 +30,13 @@ Instead of writing boilerplate security, JPA mapping, table pagination, authenti
 
 The framework is architected to rapidly construct applications including but not limited to:
 
-| Category | Typical Applications |
-| :--- | :--- |
-| **Enterprise & Core** | CRM, ERP, HRMS, Payroll, Accounting, Billing, Invoicing |
-| **Operations & Trade** | Inventory, Warehouse, Retail POS, Manufacturing, Asset Management |
-| **Services & Care** | Hospital, Clinic, School ERP, College ERP, Sports Academy |
-| **Customer & Portal** | Customer Portals, Ticket/Complaint Management, Service Management |
-| **Subscriptions & NGO**| NGO Management, Society/Community, Subscription & Membership |
+| Category | Typical Applications | AI-Enabled Features |
+| :--- | :--- | :--- |
+| **Enterprise & Core** | CRM, ERP, HRMS, Payroll, Accounting, Billing | Automated lead scoring, document extraction, invoice OCR, report summaries |
+| **Operations & Trade** | Inventory, Warehouse, Retail POS, Manufacturing | Stock reorder forecasting, automated PO generation, receipt scanning |
+| **Services & Care** | Hospital, Clinic, School ERP, College ERP | Patient record summaries, student performance analytics, voice transcription |
+| **Customer & Portals**| Customer Portals, Ticket/Complaint Management | AI Support Copilot, automated ticket classification, intelligent response drafting |
+| **Subscriptions & NGO**| NGO Management, Society/Community, Subscription | Member engagement insights, automated email/WhatsApp follow-ups |
 
 ---
 
@@ -33,9 +46,11 @@ The framework is architected to rapidly construct applications including but not
 - **Language**: Java 21 LTS
 - **Framework**: Spring Boot 3.4.x
 - **Security**: Spring Security 6.x + JWT + Redis Token Blacklist + Rate Limiting
+- **AI Engine**: Vendor-Agnostic AIProvider Abstraction (OpenAI, Gemini, Claude, Azure, Ollama)
+- **Vector Search & RAG**: PgVector, Qdrant, Milvus, Pinecone, Chroma
 - **Persistence**: Spring Data JPA + Hibernate 6.x + PostgreSQL 16
-- **Database Migrations**: Flyway 10+
-- **Cache & In-Memory Storage**: Redis 7.x
+- **Database Migrations**: Flyway 10+ (Migrations V1, V2, V3)
+- **Cache & In-Memory Storage**: Redis 7.x (Token blacklist, dynamic RBAC, prompt & cost caching)
 - **DTO Mapping**: MapStruct 1.6+
 - **Boilerplate Reduction**: Lombok
 - **API Documentation**: OpenAPI 3.0 / Swagger UI (Springdoc)
@@ -44,6 +59,7 @@ The framework is architected to rapidly construct applications including but not
 ### Web Frontend Architecture
 - **Core Framework**: React 18/19 + TypeScript
 - **Build Tool**: Vite
+- **AI Components**: Floating `AIChatWidget` assistant drawer & `AdminAIPromptsPage` UI
 - **Styling**: Tailwind CSS v3/v4 + Headless UI / Lucide Icons
 - **Server State & Caching**: TanStack Query v5 (React Query)
 - **Routing**: React Router v6
@@ -55,11 +71,37 @@ The framework is architected to rapidly construct applications including but not
 - **Navigation**: React Navigation v6
 - **Local Storage & Offline Sync**: SQLite + MMKV + Background Sync Queue
 - **Security & Biometrics**: React Native Keychain + Biometric Auth
-- **Hardware Integration**: Camera, QR/Barcode Scanner
+- **Hardware & AI**: Camera, QR/Barcode Scanner, Speech-to-Text Voice Assistant
 
 ---
 
-## 🏛️ Project Directory Structure
+## 🏛️ High-Level Layered Architecture
+
+```text
+ Presentation Layer (Web Dashboard & Mobile App)
+                        │
+                        ▼
+ Business Application Layer (CRM, ERP, Billing, HRMS, Hospital, etc.)
+                        │
+                        ▼
+ ┌─────────────────────────────────────────────────────────┐
+ │               AI Framework Layer (`modules/ai`)         │
+ │ (AIProvider, PromptEngine, RAGPipeline, AgentEngine)    │
+ └──────────────────────────┬──────────────────────────────┘
+                            │
+                            ▼
+ ┌─────────────────────────────────────────────────────────┐
+ │            Provider Abstraction & Factory Layer         │
+ └───────┬──────────────┬──────────────┬──────────────┬────┘
+         │              │              │              │
+         ▼              ▼              ▼              ▼
+      OpenAI          Gemini         Claude         Ollama
+   (Cloud LLM)    (Multimodal)    (Sonnet 3.5)   (Local/Airgapped)
+```
+
+---
+
+## 📁 Project Directory Structure
 
 ```text
 dasp-mvp-boilerplate/
@@ -67,26 +109,31 @@ dasp-mvp-boilerplate/
 │   ├── src/main/java/com/dasp/framework/
 │   │   ├── core/            # Generic Base Classes (Entity, Controller, Service, Repo, Response)
 │   │   ├── security/        # JWT, Dynamic RBAC, Redis Blacklist, Security Headers
-│   │   ├── modules/         # Reusable Modules (Auth, User, Role, Org, File, Audit, Settings)
+│   │   ├── modules/
+│   │   │   ├── ai/          # Enterprise AI Platform (Providers, RAG, Prompts, Agents, Tools, Security, Cost)
+│   │   │   ├── auth/        # Login, Logout, Refresh, Password Management
+│   │   │   ├── user/        # User CRUD & State Management
+│   │   │   ├── role/        # Role & Fine-Grained Permission Assignment
+│   │   │   ├── org/         # Organization, Branch, Department Hierarchy
+│   │   │   ├── audit/       # Automated Entity & API Audit Logs
+│   │   │   └── setting/     # Key-Value Master Data Caching
 │   │   ├── notification/    # Strategy Pattern (Email, SMS, WhatsApp, Push, In-App)
 │   │   ├── storage/         # Storage Abstraction (Local, MinIO, AWS S3)
 │   │   └── logging/         # Structured JSON Logging + MDC Correlation IDs
 │   └── src/main/resources/
-│       └── db/migration/    # Flyway Versioned Migrations & Seed Scripts
+│       └── db/migration/    # Flyway Versioned Migrations (V1, V2, V3 Schema)
 ├── frontend/                 # React 18 + Vite + TS Enterprise Dashboard
 │   └── src/
-│       ├── components/      # UI Component Library (Buttons, Tables, Forms, Modals, Dynamic Forms)
+│       ├── components/      # UI Component Library (Buttons, Tables, Forms, AIChatWidget)
 │       ├── context/         # Auth & Theme State Providers
-│       ├── hooks/           # Custom React Hooks (useAuth, usePermissions, useApiQuery)
 │       ├── services/        # Axios Client & Interceptors
-│       └── pages/           # Admin Pages (Users, Roles, Organizations, Audit Logs, Dashboard)
+│       └── pages/           # Admin Pages (Users, Roles, AI Prompts, Dashboard)
 ├── mobile/                   # React Native + TypeScript Cross-Platform App
 │   └── src/
 │       ├── navigation/      # Stack & Tab Navigators
-│       ├── storage/         # SQLite Offline Database & Queue Manager
-│       ├── screens/         # Mobile Screens (Login, Dashboard, Offline Status)
-│       └── components/      # Native Custom Components
-├── docs/                     # 13 Enterprise Technical Specification Documents
+│       ├── storage/         # SQLite Offline Database & Sync Queue Manager
+│       └── screens/         # Mobile Screens (Login, Dashboard, Offline Status)
+├── docs/                     # 18 Enterprise Technical Specification Documents
 ├── docker/                   # Docker Compose environment (Postgres, Redis, PgAdmin, Redis Insight)
 ├── scripts/                  # Developer environment setup & seed scripts
 └── .github/workflows/        # Automated CI/CD Pipelines
@@ -106,38 +153,46 @@ dasp-mvp-boilerplate/
 ```bash
 git clone https://github.com/dasp-digital/dasp-mvp-boilerplate.git
 cd dasp-mvp-boilerplate
+cp .env.example .env
 ```
 
-### 2. Launch Local Infrastructure (PostgreSQL & Redis)
+### 2. Configure AI Provider Keys (Optional)
+Edit `.env` to configure your preferred AI provider:
+```env
+OPENAI_API_KEY=sk-proj-xxxxxx
+GEMINI_API_KEY=AIzaSyxxxxxx
+OLLAMA_BASE_URL=http://localhost:11434
+```
+
+### 3. Launch Infrastructure (PostgreSQL & Redis)
 ```bash
 docker-compose -f docker/docker-compose.yml up -d
 ```
-*Access infrastructure tools:*
-- **PgAdmin 4**: http://localhost:5050 (`admin@dasp.com` / `admin123`)
-- **Redis Insight**: http://localhost:5540
 
-### 3. Start Backend Application
+### 4. Start Backend Application
 ```bash
 cd backend
 ./mvnw spring-boot:run
 ```
 *Backend API Services:*
 - **Swagger API Docs**: http://localhost:8080/swagger-ui.html
+- **AI Chat Endpoint**: `POST http://localhost:8080/api/v1/ai/chat`
 - **Actuator Health**: http://localhost:8080/actuator/health
 
-### 4. Start Web Frontend
+### 5. Start Web Frontend
 ```bash
 cd ../frontend
 npm install
 npm run dev
 ```
-*Access Web Dashboard at http://localhost:5173* (Default Admin Credentials: `admin@dasp.com` / `Admin@123`)
+*Access Web Dashboard & Floating AI Assistant at http://localhost:5173*  
+(Default Admin Credentials: `admin@dasp.com` / `Admin@123`)
 
 ---
 
 ## 📚 Comprehensive Documentation Index
 
-Explore the full architectural specifications in the `docs/` folder:
+Explore the full technical specifications in the `docs/` directory:
 
 1. 🏛️ [ARCHITECTURE.md](docs/ARCHITECTURE.md) - System architecture, sequence diagrams, SOLID principles.
 2. ☕ [BACKEND.md](docs/BACKEND.md) - Spring Boot layer architecture, base classes, caching & logging.
@@ -161,4 +216,4 @@ Explore the full architectural specifications in the `docs/` folder:
 ---
 
 ## 📄 License & Proprietary Notice
-Copyright © 2026 **DASP Digital**. All rights reserved. Proprietary reusable framework for internal and commercial application developments.
+Copyright © 2026 **DASP Digital**. All rights reserved. Proprietary reusable framework & AI platform for internal and commercial application developments.
