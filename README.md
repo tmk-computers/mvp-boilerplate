@@ -207,11 +207,12 @@ Explore the full technical specifications in the `docs/` directory:
 11. 🗄️ [DATABASE.md](docs/DATABASE.md) - PostgreSQL standards, UUID primary keys, soft delete & Flyway.
 12. 🔒 [SECURITY.md](docs/SECURITY.md) - Spring Security, JWT rotation, Redis blacklist, dynamic RBAC.
 13. 🐳 [DEPLOYMENT.md](docs/DEPLOYMENT.md) - Docker Compose, Nginx, SSL certificates, health monitoring.
-14. 🌐 [API-STANDARDS.md](docs/API-STANDARDS.md) - REST guidelines, `ApiResponse<T>`, pagination & versioning.
-15. 🤝 [CONTRIBUTING.md](docs/CONTRIBUTING.md) - Git Flow, Conventional Commits & Pull Request rules.
-16. 🧪 [TESTING.md](docs/TESTING.md) - JUnit 5, Mockito, Integration & Web/Mobile UI tests.
-17. 📝 [CHANGELOG.md](docs/CHANGELOG.md) - Version history & semantic release tracking.
-18. 📏 [CODING-STANDARDS.md](docs/CODING-STANDARDS.md) - Code style, formatting, Checkstyle & ESLint rules.
+14. 💻 [LOCAL-SETUP.md](docs/LOCAL-SETUP.md) - Step-by-step local setup, IDE execution, Ollama AI, troubleshooting.
+15. 🌐 [API-STANDARDS.md](docs/API-STANDARDS.md) - REST guidelines, `ApiResponse<T>`, pagination & versioning.
+16. 🤝 [CONTRIBUTING.md](docs/CONTRIBUTING.md) - Git Flow, Conventional Commits & Pull Request rules.
+17. 🧪 [TESTING.md](docs/TESTING.md) - JUnit 5, Mockito, Integration & Web/Mobile UI tests.
+18. 📝 [CHANGELOG.md](docs/CHANGELOG.md) - Version history & semantic release tracking.
+19. 📏 [CODING-STANDARDS.md](docs/CODING-STANDARDS.md) - Code style, formatting, Checkstyle & ESLint rules.
 
 ---
 
